@@ -4,9 +4,9 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
-import postRouter from './routes/posts.js';
+import indexRouter from './controllers/home/homeRouter.js';
+import usersRouter from './controllers/user/userRouter.js';
+import postRouter from './controllers/post/postRouter.js';
 
 const app = express();
 
@@ -21,8 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/blah', postRouter);
+app.use('/user', usersRouter);
+app.use('/post', postRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,18 +1,14 @@
 import express from 'express';
-
-const router = express.Router();
+// eslint-disable-next-line no-unused-vars
+const { Request, Response } = express;
 /**
  * The PostController handles everything related to posts.
  */
 class PostController {
-  constructor() {
-    router.get('/post/:id', this.getPost);
-  }
-
   /**
    *
-   * @param {express.Request} req
-   * @param {express.Response} res
+   * @param {Request} req
+   * @param {Response} res
    */
   getPost(req, res) {
     res.json({
@@ -21,6 +17,4 @@ class PostController {
   }
 }
 
-new PostController();
-
-export default router;
+export default new PostController();
