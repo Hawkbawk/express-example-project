@@ -1,0 +1,25 @@
+FROM node:14
+
+ARG WORKDIR=/usr/src/app
+
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install vim -y
+
+
+# Add directory for VSCode extensions so that we can create a volume and avoid
+# a reinstall on every build.
+RUN mkdir -p /home/node/.vscode-server/extensions \
+  /home/node/.vscode-server-insiders/extensions \
+  && chown -R node \
+  /home/node/.vscode-server \
+  /home/node/.vscode-server-insiders
+
+USER node
+
+WORKDIR ${WORKDIR}
+
+COPY --chown=node:node . .
+
+# Install dependencies and start the app.
+RUN ["yarn", "install"]
+CMD ["yarn", "debug"]

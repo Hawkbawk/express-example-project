@@ -1,2 +1,3 @@
 # Ignore compiled typescript stuff.
 dist
+node_modules
